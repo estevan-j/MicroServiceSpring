@@ -1,5 +1,6 @@
 package com.example.InventoryService.controller;
 
+import com.example.InventoryService.dto.InventoryResponse;
 import com.example.InventoryService.model.Inventory;
 import com.example.InventoryService.service.InventoryService;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,9 @@ public class InventoryController {
 
     private final InventoryService inventoryService;
 
-    @GetMapping("/{sky-code}")
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public boolean isInStock(@PathVariable("sky-code") String skyCode) {
-        return inventoryService.isInStock(skyCode);
+    public List<InventoryResponse>  isInStock(@RequestParam List<String> skuCode) {
+        return inventoryService.isInStock(skuCode);
     }
 }
